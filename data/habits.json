@@ -1,0 +1,33 @@
+{
+  "student_id": "MVP_User_001",
+  "basic_routine": {
+    "wake_up_time": "07:30",
+    "sleep_time": "23:30",
+    "nap_time": "13:00-13:40",
+    "nap_duration_mins": 40,
+    "breakfast_time": "07:40-08:10",
+    "lunch_time": "12:00-12:40",
+    "dinner_time": "18:00-18:40"
+  },
+  "travel_habits": {
+    "preferred_transport": "校园单车",
+    "avoid_peak_hours": true,
+    "route_preference": "偏好林荫小道，避开主干道人流"
+  },
+  "dietary_habits": {
+    "preference": "清淡，高蛋白",
+    "taboos": "忌辛辣、忌生冷",
+    "meal_time_preference": "倾向错峰就餐，如12:20之后再去食堂"
+  },
+  "study_habits": {
+    "post_class_review_duration_mins": 60,
+    "preferred_location": "重点实验室或图书馆三楼静音区",
+    "efficient_time_slots": ["09:00-11:30", "19:00-21:30"],
+    "current_focus": "联邦学习与物联网设备研究、Django Web应用开发"
+  },
+  "high_priorities": [
+    "每天必须保证40分钟午休",
+    "每天推进WCCI 2026会议论文撰写至少1.5小时",
+    "使用艾宾浩斯曲线工具完成每日词汇复习"
+  ]
+}

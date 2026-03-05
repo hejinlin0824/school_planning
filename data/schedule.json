@@ -1,0 +1,62 @@
+{
+  "student_id": "MVP_User_001",
+  "semester": "秋季学期",
+  "classes": [
+    {
+      "course_name": "联邦学习基础与应用",
+      "day_of_week": "周一",
+      "period": "1-2节",
+      "location": "信息楼205教室",
+      "cycle": "每周"
+    },
+    {
+      "course_name": "强化学习导论",
+      "day_of_week": "周一",
+      "period": "5-6节",
+      "location": "计算机楼301机房",
+      "cycle": "每周"
+    },
+    {
+      "course_name": "博弈论模型解析",
+      "day_of_week": "周二",
+      "period": "3-4节",
+      "location": "理科楼402教室",
+      "cycle": "单周"
+    },
+    {
+      "course_name": "Web后端开发实践",
+      "day_of_week": "周二",
+      "period": "7-8节",
+      "location": "软件学院108实验室",
+      "cycle": "每周"
+    },
+    {
+      "course_name": "联邦学习基础与应用（实验）",
+      "day_of_week": "周三",
+      "period": "1-2节",
+      "location": "信息楼205机房",
+      "cycle": "双周"
+    },
+    {
+      "course_name": "专业英语与学术写作",
+      "day_of_week": "周三",
+      "period": "5-6节",
+      "location": "外语楼210室",
+      "cycle": "每周"
+    },
+    {
+      "course_name": "人工智能伦理与安全",
+      "day_of_week": "周五",
+      "period": "3-4节",
+      "location": "综合楼101阶梯教室",
+      "cycle": "每周"
+    },
+    {
+      "course_name": "体育（羽毛球）",
+      "day_of_week": "周五",
+      "period": "7-8节",
+      "location": "校体育馆副馆",
+      "cycle": "每周"
+    }
+  ]
+}
