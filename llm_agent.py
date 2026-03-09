@@ -1,11 +1,17 @@
+#Q：你怎么保证你的规划是合理的
+#A：我们的智能体是React架构：提出问题，草拟答案，思考能否回答，若不行，继续草拟答案，思考能否回答；直到若行，输出答案；
+
+#Q：你的框架是什么。langchain还是langgraph
+#A：我用的是CoT（call of tools），用openai库
+
 import json
-from openai import OpenAI
+from openai import OpenAI###Q：openai库？，使用智能体百分百要用的库，三个参数，导入智能体的
 
 class CampusAIAgent:
     """
     校园AI助手大脑类：负责将本地数据转化为 Prompt，并与真实的 DeepSeek 大模型交互。
     """
-    
+    #正常一般是要写.env文件
     def __init__(self, api_key="sk-e1a059c5a2e2471ab11ee30f2d0a19f1", base_url="https://api.deepseek.com", model="deepseek-chat"):
         """
         初始化真实的 DeepSeek 客户端。
@@ -15,14 +21,14 @@ class CampusAIAgent:
         self.model = model
         self.client = OpenAI(api_key=self.api_key, base_url=base_url)
 
-    def _build_system_prompt(self, schedule_data, habits_data):
+    def _build_system_prompt(self, schedule_data, habits_data):#Q：二者区别；系统提示词：你给大模型的角色设计；user_promot：你说的话
         """
         私有方法：构建系统提示词 (System Prompt)。
         这是整个 Agent 最核心的“灵魂”，决定了它回答的质量和逻辑。
         """
         # 将 Python 字典转化为排版良好的 JSON 字符串，喂给大模型
         schedule_str = json.dumps(schedule_data, ensure_ascii=False, indent=2)
-        habits_str = json.dumps(habits_data, ensure_ascii=False, indent=2)
+        habits_str = json.dumps(habits_data, ensure_ascii=False, indent=2)#Q：你的系统提示词设计思路：系统提示词的思路：设定任务和角色、（给他数据）、提出要求
         
         system_prompt = f"""你是一个专门为大学生设计的“校内行动规划AI助手”。
 你的核心任务是根据用户的【课表数据】和【个人习惯数据】，提供极其务实、没有废话的行动建议。
@@ -55,7 +61,7 @@ class CampusAIAgent:
             )
             return response.choices[0].message.content
         except Exception as e:
-            return f"❌ 调用 DeepSeek API 时发生错误：{e}"
+            return f"❌ 调用 DeepSeek API 时发生错误：{e}"  #Q：怎么调用大模型；A：Openai包内部方法，传入我的三个关键参数就行
 
     # ==========================================
     # 以下为对外的核心业务方法 (MVP 闭环功能)
@@ -64,6 +70,7 @@ class CampusAIAgent:
     def get_active_daily_plan(self, today_info, schedule_data, habits_data):
         """主动推荐：生成每日基础行动规划与冲突预警"""
         sys_prompt = self._build_system_prompt(schedule_data, habits_data)
+        #Q:功能1：系统当天8am主动给用户弹消息，结合用户今日课表、习惯、出行偏好给出一个规划建议
         
         # ⚠️ 核心修复点：通过强指令（Prompt）锁死时间锚点，杜绝大模型规划过去的时间
         user_msg = (
@@ -78,6 +85,7 @@ class CampusAIAgent:
     def get_passive_recommendation(self, user_query, current_time_info, schedule_data, habits_data):
         """被动推荐：处理用户的个性化查询与出行推荐"""
         sys_prompt = self._build_system_prompt(schedule_data, habits_data)
+        #功能2：用户主动询问某个时间后的安排，智能体根据后续用户今日课表、习惯、出行偏好给出最合适的规划建议
         user_msg = f"当前时间/情境：{current_time_info}。\n用户的需求是：【{user_query}】。\n请结合我的数据给出最直接的推荐。"
         
         return self._call_llm(sys_prompt, user_msg)
